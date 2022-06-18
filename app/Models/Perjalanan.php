@@ -9,6 +9,7 @@ class Perjalanan extends Model
 {
     use HasFactory;
     
+    protected $primaryKey = 'id_perjalanan';
     public function sopir()
     {
         return $this->belongsTo(Sopir::class);

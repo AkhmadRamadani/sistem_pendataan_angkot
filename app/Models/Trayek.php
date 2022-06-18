@@ -8,6 +8,7 @@ use Illuminate\Database\Eloquent\Model;
 class Trayek extends Model
 {
     use HasFactory;
+    protected $primaryKey = 'id_trayek';
 
     public function angkot()
     {

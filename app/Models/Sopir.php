@@ -9,9 +9,10 @@ class Sopir extends Model
 {
     use HasFactory;
     
+    protected $primaryKey = 'id_sopir';
     public function angkot()
     {
-        return $this->hasOne(Angkot::class);
+        return $this->hasOne(Angkot::class, 'id_sopir')->withDefault();
     }
     
     public function perjalanan()
