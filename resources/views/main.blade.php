@@ -63,13 +63,13 @@
                                     </a>
                                 </li><!-- .nk-menu-item -->
                                 <li class="nk-menu-item">
-                                    <a href="html/index-invest.html" class="nk-menu-link">
+                                    <a href="/perjalanan" class="nk-menu-link">
                                         <span class="nk-menu-icon"><em class="icon ni ni-navigate"></em></span>
                                         <span class="nk-menu-text">Perjalanan Dashboard</span>
                                     </a>
                                 </li><!-- .nk-menu-item -->
                                 <li class="nk-menu-item">
-                                    <a href="html/index-invest.html" class="nk-menu-link">
+                                    <a href="/trayek" class="nk-menu-link">
                                         <span class="nk-menu-icon"><em class="icon ni ni-home"></em></span>
                                         <span class="nk-menu-text">Trayek Dashboard</span>
                                     </a>

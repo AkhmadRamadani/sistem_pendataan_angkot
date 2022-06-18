@@ -24,3 +24,15 @@ Route::get('/login', function () {
 Route::get('/sopir', function () {
     return view('pages.sopir');
 });
+
+Route::get('/perjalanan', function () {
+    return view('pages.perjalanan');
+});
+
+Route::get('/angkot', function () {
+    return view('pages.angkot');
+});
+
+Route::get('/trayek', function () {
+    return view('pages.trayek');
+});
