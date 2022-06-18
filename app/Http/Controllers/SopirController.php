@@ -45,9 +45,10 @@ class SopirController extends Controller
      * @param  \App\Models\Sopir  $sopir
      * @return \Illuminate\Http\Response
      */
-    public function show(Sopir $sopir)
+    public function show($sopir)
     {
-        //
+        $sopir = Sopir::where('id_sopir', $sopir)->with('angkot.trayek')->first();
+        return view('pages.sopir_detail', ['sopir' => $sopir]);
     }
 
     /**
