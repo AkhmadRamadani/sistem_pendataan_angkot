@@ -2,6 +2,8 @@
 
 use Illuminate\Support\Facades\Route;
 
+use App\Http\Controllers\SopirController;
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -21,9 +23,7 @@ Route::get('/login', function () {
     return view('auth.login');
 });
 
-Route::get('/sopir', function () {
-    return view('pages.sopir');
-});
+Route::resource('sopir',  SopirController::class);
 
 Route::get('/perjalanan', function () {
     return view('pages.perjalanan');
