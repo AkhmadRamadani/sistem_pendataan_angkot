@@ -3,6 +3,9 @@
 namespace Database\Seeders;
 
 use Illuminate\Database\Seeder;
+use Database\Seeders\SopirSeeder;
+use Database\Seeders\AngkotSeeder;
+use Database\Seeders\TrayekSeeder;
 
 class DatabaseSeeder extends Seeder
 {
@@ -13,6 +16,10 @@ class DatabaseSeeder extends Seeder
      */
     public function run()
     {
-        // \App\Models\User::factory(10)->create();
+        $this->call([
+            SopirSeeder::class,
+            AngkotSeeder::class,
+            TrayekSeeder::class,
+        ]);
     }
 }
