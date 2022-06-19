@@ -36,7 +36,28 @@ class SopirController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $request->validate([
+            'name' => 'required',
+            'jenis_kelamin' => 'required',
+            'alamat' => 'required',
+            'foto' => 'required', 
+        ]);
+
+        $image_name = "";
+        if ($request->has('foto')) {
+            $image_name = $request->foto->store('foto_sopir', 'public');
+        }
+
+        $sopir = new Sopir;
+        $sopir->nama = $request->get("name");
+        $sopir->jenis_kelamin = $request->get("jenis_kelamin");
+        $sopir->alamat = $request->get("alamat");
+        $sopir->status = 'inactive';
+        $sopir->foto = $image_name;
+
+        $sopir->save();
+        
+        return redirect()->route('sopir.index');
     }
 
     /**
@@ -71,7 +92,21 @@ class SopirController extends Controller
      */
     public function update(Request $request, Sopir $sopir)
     {
-        //
+        $sopir->nama = $request->name_update;
+        $sopir->alamat = $request->alamat_update;
+        $sopir->jenis_kelamin = $request->get('jenis_kelamin_update'.$sopir->id_sopir);
+        $sopir->status = $request->get('status_update'.$sopir->id_sopir);
+        
+        $image_name = $sopir->foto;
+        if ($request->has('foto_update')) {
+            $image_name = $request->foto_update->store('foto_sopir', 'public');
+        }
+
+        $sopir->foto = $image_name;
+
+        $sopir->save();
+        
+        return redirect()->route('sopir.index');
     }
 
     /**
@@ -82,6 +117,8 @@ class SopirController extends Controller
      */
     public function destroy(Sopir $sopir)
     {
-        //
+        $sopir->delete();
+        
+        return redirect()->route('sopir.index');
     }
 }
