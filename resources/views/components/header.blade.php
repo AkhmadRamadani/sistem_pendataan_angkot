@@ -12,7 +12,7 @@
                     srcset="./images/logo-dark2x.png 2x" alt="logo-dark">
             </a>
         </div><!-- .nk-header-brand -->
-        <div class="nk-header-news d-none d-xl-block">
+        {{-- <div class="nk-header-news d-none d-xl-block">
             <div class="nk-news-list">
                 <a class="nk-news-item" href="#">
                     <div class="nk-news-icon">
@@ -25,7 +25,7 @@
                     </div>
                 </a>
             </div>
-        </div><!-- .nk-header-news -->
+        </div><!-- .nk-header-news --> --}}
         <div class="nk-header-tools">
             <ul class="nk-quick-nav">
                 <li class="dropdown user-dropdown">
@@ -36,7 +36,7 @@
                             </div>
                             <div class="user-info d-none d-md-block">
                                 <div class="user-status">Administrator</div>
-                                <div class="user-name dropdown-indicator">Akhmad Ramadani</div>
+                                <div class="user-name dropdown-indicator">{{ $user->name}}</div>
                             </div>
                         </div>
                     </a>
@@ -71,7 +71,7 @@
                         </div>
                         <div class="dropdown-inner">
                             <ul class="link-list">
-                                <li><a href="#"><em
+                                <li><a href="{{ route('logout') }}"><em
                                             class="icon ni ni-signout"></em><span>Sign
                                             out</span></a></li>
                             </ul>

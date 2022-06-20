@@ -15,15 +15,14 @@ use App\Http\Controllers\SopirController;
 |
 */
 
-Route::get('/', function () {
-    return view('main');
-});
+Route::get('/', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+Route::get('/logout', [App\Http\Controllers\HomeController::class, 'loggingOut']);
 
-Route::get('/login', function () {
-    return view('auth.login');
-});
+// Route::get('/login', function () {
+//     return view('auth.login');
+// });
 
-Route::resource('sopir',  SopirController::class);
+Route::resource('sopir',  SopirController::class)->middleware('auth');;
 
 Route::get('/perjalanan', function () {
     return view('pages.perjalanan');
@@ -36,3 +35,6 @@ Route::get('/angkot', function () {
 Route::get('/trayek', function () {
     return view('pages.trayek');
 });
+Auth::routes(['register' => false]);
+
+Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');

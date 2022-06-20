@@ -3,9 +3,10 @@
 namespace App\Http\Controllers;
 
 use App\Models\Sopir;
+use App\Http\Controllers\HomeController;
 use Illuminate\Http\Request;
 
-class SopirController extends Controller
+class SopirController extends HomeController
 {
     /**
      * Display a listing of the resource.

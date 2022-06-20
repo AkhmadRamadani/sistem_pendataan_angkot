@@ -103,7 +103,9 @@
             <div class="nk-wrap ">
                 <!-- main header @s -->
                 <div class="nk-header nk-header-fixed is-light">
-                    @include('components.header')
+                    {{-- @include('components.header') --}}
+                   {{-- <h1>{{$user->name}}</h1>  --}}
+                    <x-header></x-header>
                 </div>
                 <!-- main header @e -->
                 <!-- content @s -->
