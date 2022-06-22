@@ -4,6 +4,7 @@ use Illuminate\Support\Facades\Route;
 
 use App\Http\Controllers\SopirController;
 use App\Http\Controllers\AngkotController;
+use App\Http\Controllers\TrayekController;
 
 /*
 |--------------------------------------------------------------------------
@@ -23,21 +24,23 @@ Route::get('/logout', [App\Http\Controllers\HomeController::class, 'loggingOut']
 //     return view('auth.login');
 // });
 
-Route::resource('sopir',  SopirController::class)->middleware('auth');;
-Route::resource('angkot',  AngkotController::class)->middleware('auth');;
+Route::resource('sopir',  SopirController::class)->middleware('auth');
+Route::resource('angkot',  AngkotController::class)->middleware('auth');
 
 Route::get('/perjalanan', function () {
     return view('pages.perjalanan');
 });
 
-Route::resource('angkot', AngkotController::class);
+// Route::resource('angkot', AngkotController::class);
 //Route::get('/angkot', function () {
 //    return view('pages.angkot');
 //});
 
-Route::get('/trayek', function () {
-    return view('pages.trayek');
-});
+Route::resource('trayek', TrayekController::class)->middleware('auth');
+
+// Route::get('/trayek', function () {
+//     return view('pages.trayek');
+// });
 Auth::routes(['register' => false]);
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
