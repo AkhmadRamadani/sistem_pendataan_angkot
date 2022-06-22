@@ -81,10 +81,10 @@ class AngkotController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  int  $id
+     * @param  \App\Models\Angkot  $angkot
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show($angkot)
     {
         //
     }
@@ -92,10 +92,10 @@ class AngkotController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  int  $id
+     * @param  \App\Models\Angkot  $angkot
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit(Angkot $angkot)
     {
         //
     }
@@ -104,22 +104,30 @@ class AngkotController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
+     * @param  \App\Models\Angkot  $angkot
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, Angkot $angkot)
     {
-        //
+        $angkot->no_angkot = $request->no_angkot_update;
+        $angkot->no_pol = $request->no_pol_update;
+        $angkot->merk = $request->merk_update;
+        
+        $angkot->save();
+        
+        return redirect()->route('angkot.index');
     }
 
     /**
      * Remove the specified resource from storage.
      *
-     * @param  int  $id
+     * @param  \App\Models\Angkot  $angkot
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(Angkot $angkot)
     {
-        //
+        $angkot->delete();
+        
+        return redirect()->route('angkot.index');
     }
 }
