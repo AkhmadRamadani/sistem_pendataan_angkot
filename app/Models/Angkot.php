@@ -12,6 +12,6 @@ class Angkot extends Model
 
     public function trayek()
     {
-        return $this->belongsTo(Trayek::class, 'id_trayek')->withDefault();
+        return $this->belongsTo(Trayek::class, 'id_trayek', 'id_trayek')->withDefault();
     }
 }

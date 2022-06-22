@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\Route;
 
 use App\Http\Controllers\SopirController;
+use App\Http\Controllers\AngkotController;
 
 /*
 |--------------------------------------------------------------------------
@@ -23,14 +24,15 @@ Route::get('/logout', [App\Http\Controllers\HomeController::class, 'loggingOut']
 // });
 
 Route::resource('sopir',  SopirController::class)->middleware('auth');;
+Route::resource('angkot',  AngkotController::class)->middleware('auth');;
 
 Route::get('/perjalanan', function () {
     return view('pages.perjalanan');
 });
 
-Route::get('/angkot', function () {
-    return view('pages.angkot');
-});
+// Route::get('/angkot', function () {
+//     return view('pages.angkot');
+// });
 
 Route::get('/trayek', function () {
     return view('pages.trayek');
