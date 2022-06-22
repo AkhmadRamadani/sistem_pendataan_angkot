@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\Route;
 
 use App\Http\Controllers\SopirController;
+use App\Http\Controllers\AngkotController;
 
 /*
 |--------------------------------------------------------------------------
@@ -28,9 +29,10 @@ Route::get('/perjalanan', function () {
     return view('pages.perjalanan');
 });
 
-Route::get('/angkot', function () {
-    return view('pages.angkot');
-});
+Route::resource('angkot', AngkotController::class);
+//Route::get('/angkot', function () {
+//    return view('pages.angkot');
+//});
 
 Route::get('/trayek', function () {
     return view('pages.trayek');

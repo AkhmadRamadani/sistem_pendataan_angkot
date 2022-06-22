@@ -1,11 +1,62 @@
 @extends('main')
 @section('content')
+<div class="modal fade" tabindex="-1" id="addAngkotModal">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <a href="#" class="close" data-dismiss="modal" aria-label="Close">
+                <em class="icon ni ni-cross"></em>
+            </a>
+            <div class="modal-header">
+                <h5 class="modal-title">Tambah Angkot</h5>
+            </div>
+            <form method="post" action="{{ route('angkot.store') }}" enctype="multipart/form-data" class="mt-2">
+                @csrf
+                <div class="modal-body">
+                    <div class="row g-gs">
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label class="form-label" for="no_angkot">No Angkot</label>
+                                <div class="form-control-wrap">
+                                    <input type="text" class="form-control" id="no_angkot" name="no_angkot"
+                                        placeholder="No Angkot" required>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label class="form-label" for="no_pol">Plat Nomor</label>
+                                <div class="form-control-wrap">
+                                    <input type="text" class="form-control" id="no_pol" name="no_pol"
+                                        placeholder="Plat Nomor" required>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label class="form-label" for="merk">Merk</label>
+                                <div class="form-control-wrap">
+                                    <input type="text" class="form-control" id="merk" name="merk"
+                                        placeholder="Merk" required>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer bg-light">
+                    <div class="form-group">
+                         <button type="submit" class="btn btn-primary">Save</button>
+                    </div>
+                </div>
+            </form>
+         </div>
+    </div>
+</div>
 <div class="nk-block-head nk-block-head-sm">
     <div class="nk-block-between">
         <div class="nk-block-head-content">
             <h3 class="nk-block-title page-title">Angkot Lists</h3>
             <div class="nk-block-des text-soft">
-                <p>You have total 50 angkot.</p>
+                <p>You have total {{ count($angkots) }} angkot.</p>
             </div>
         </div><!-- .nk-block-head-content -->
         <div class="nk-block-head-content">
@@ -224,40 +275,18 @@
                         </div>
                         <div class="nk-tb-col">
                             <div class="user-card">
-                                <div class="user-avatar xs bg-primary">
-                                    <span>01</span>
-                                </div>
-                                <!---<div class="user-name">
-                                    <span class="tb-lead">Abu Bin Ishtiyak</span>
-                                </div>--->
+                                <span class="tb-lead">{{ $angkot->no_angkot }}</span>
                             </div>
                         </div>
                         <div class="nk-tb-col tb-col-md">
-                            <span>Toyota</span>
+                            <span>{{ $angkot->merk }}</span>
                         </div>
                         <div class="nk-tb-col tb-col-sm">
-                            <span>N 19762 BK</span>
-                        </div>
-                        <div class="nk-tb-col tb-col-md">
-                            <span class="tb-status text-success">Active</span>
-                        </div>
-                        <!---- <div class="nk-tb-col tb-col-xxl">
-                            <span>Bangladesh</span>
-                        </div>
-                        <div class="nk-tb-col tb-col-lg">
-                            <ul class="list-status">
-                                <li><em class="icon text-success ni ni-check-circle"></em> <span>Email</span></li>
-                            </ul>
-                        </div>
-                        <div class="nk-tb-col tb-col-xxl">
-                            <span>10 Feb 2020</span>
-                        </div>
-                        <div class="nk-tb-col">
-                            <span class="tb-status text-success">Active</span>
+                            <span>{{ $angkot->no_pol</span>
                         </div>
                         <div class="nk-tb-col nk-tb-col-tools">
                             <ul class="nk-tb-actions gx-2">
-                                <li class="nk-tb-action-hidden">
+                                <!--- <li class="nk-tb-action-hidden">
                                     <a href="#" class="btn btn-sm btn-icon btn-trigger" data-toggle="tooltip" data-placement="top" title="Wallet">
                                         <em class="icon ni ni-wallet-fill"></em>
                                     </a>
