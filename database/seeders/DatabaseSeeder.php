@@ -6,6 +6,7 @@ use Illuminate\Database\Seeder;
 use Database\Seeders\SopirSeeder;
 use Database\Seeders\AngkotSeeder;
 use Database\Seeders\TrayekSeeder;
+use Database\Seeders\UserSeeder;
 
 class DatabaseSeeder extends Seeder
 {
@@ -20,6 +21,7 @@ class DatabaseSeeder extends Seeder
             SopirSeeder::class,
             AngkotSeeder::class,
             TrayekSeeder::class,
+            UserSeeder::class,
         ]);
     }
 }
