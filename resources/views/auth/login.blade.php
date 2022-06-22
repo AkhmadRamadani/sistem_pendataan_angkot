@@ -137,7 +137,7 @@
                                             <input id="email" type="email"
                                                 class="form-control form-control-lg @error('email') is-invalid @enderror"
                                                 name="email" value="{{ old('email') }}" required
-                                                autocomplete="email" autofocus>
+                                                autocomplete="email" autofocus placeholder="Enter your email">
 
                                             @error('email')
                                                 <span class="invalid-feedback" role="alert">
