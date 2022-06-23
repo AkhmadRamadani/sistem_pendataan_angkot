@@ -109,10 +109,27 @@ class AngkotController extends Controller
      */
     public function update(Request $request, Angkot $angkot)
     {
-        $angkot->no_angkot = $request->no_angkot_update;
+        //$angkot->no_angkot = $request->no_angkot_update;
         $angkot->no_pol = $request->no_pol_update;
         $angkot->merk = $request->merk_update;
+        $angkot->id_trayek = $request->nama_trayek_update;
+        $angkot->id_sopir = $request->nama_pemilik_update;
         
+        $image_name_stnk = $angkot->foto_stnk;
+        if ($request->has('update_stnk')) {
+            $image_name_stnk = $request->foto_stnk->store('foto_stnk', 'public');
+        }
+
+        $image_name_bpkb = $angkot->foto_bpkb;
+        if ($request->has('update_bpkb')) {
+            $image_name_bpkb = $request->foto_bpkb->store('foto_bpkb', 'public');
+        }
+
+        $last_no_angkot = Angkot::where('id_trayek', $request->get('nama_trayek'))->orderBy('no_angkot', 'desc')->get();
+
+        $angkot->foto_stnk = $image_name_stnk;
+        $angkot->foto_bpkb = $image_name_bpkb;
+
         $angkot->save();
         
         return redirect()->route('angkot.index');

@@ -327,6 +327,157 @@
                             </div>
                         </div><!-- .nk-tb-item -->
                         @foreach ($angkots as $angkot)
+                        {{-- DELETE MODAL --}}
+                            <div class="modal fade" id="deleteAngkotModal{{ $angkot->id_angkot }}">
+                                <div class="modal-dialog" role="document">
+                                    <div class="modal-content">
+                                        <a href="#" class="close" data-dismiss="modal"><em
+                                                class="icon ni ni-cross"></em></a>
+                                        <form action="{{ route('angkot.destroy', $angkot) }}" method="POST">
+                                            @csrf
+                                            @method('DELETE')
+                                            <div class="modal-body modal-body-sm text-center">
+                                                <div class="nk-modal py-4">
+                                                    <em
+                                                        class="nk-modal-icon icon icon-circle icon-circle-xxl ni ni-cross bg-danger"></em>
+                                                    <h4 class="nk-modal-title">Are You Sure ?</h4>
+                                                    <div class="nk-modal-text mt-n2">
+                                                        <p class="text-soft">This data will be removed permanently.</p>
+                                                    </div>
+                                                    <ul class="d-flex justify-content-center gx-4 mt-4">
+                                                        <li>
+                                                            <button id="deleteWH" type="submit"
+                                                                class="btn btn-success">Yes, Delete it</button>
+                                                        </li>
+                                                        <li>
+                                                            <button data-dismiss="modal" data-toggle="modal"
+                                                                data-target="#editEventPopup"
+                                                                class="btn btn-danger btn-dim">Cancel</button>
+                                                        </li>
+                                                    </ul>
+                                                </div>
+                                            </div>
+                                        </form>
+
+                                    </div>
+                                </div>
+                            </div>
+                            {{-- END OF DELETE MODAL --}}
+
+                            {{-- UPDATE MODAL --}}
+                            <div class="modal fade" tabindex="-1" id="updateAngkotModal{{ $angkot->id_angkot }}">
+                                <div class="modal-dialog" role="document">
+                                    <div class="modal-content">
+                                        <a href="#" class="close" data-dismiss="modal" aria-label="Close">
+                                            <em class="icon ni ni-cross"></em>
+                                        </a>
+                                        <div class="modal-header">
+                                            <h5 class="modal-title">Update Angkot</h5>
+                                        </div>
+                                        <form method="post" action="{{ route('angkot.update', $angkot) }}"
+                                            enctype="multipart/form-data" class="mt-2"
+                                            id="form_update_for{{ $angkot->angkot }}">
+                                            @method('PUT')
+                                            @csrf
+                                            <div class="modal-body">
+                                                <div class="card-inner-group">
+                                                    {{-- <div class="card-inner"> --}}
+                                                    <div class="user-card user-card-s2">
+                                                        <div class="user-avatar xl bg-primary">
+                                                            <span>{{ $angkot->no_angkot }}</span>
+                                                        </div>
+                                                    </div>    
+                                                    <div class="card-inner">
+                                                        <div class="row g-gs">
+                                                            <div class="col-md-6">
+                                                                <div class="form-group">
+                                                                    <label class="form-label" for="name_update">No
+                                                                        Polisi</label>
+                                                                    <div class="form-control-wrap">
+                                                                        <input type="text" class="form-control"
+                                                                            id="no_pol_update" value="{{ $angkot->no_pol }}"
+                                                                            name="no_pol_update" placeholder="No Polisi"
+                                                                            required>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                            <div class="col-md-6">
+                                                                <div class="form-group">
+                                                                        <label class="form-label" for="nama_trayek_update">Nama Trayek</label>
+                                                                        <div class="form-control-wrap">
+                                                                            <select class="form-select" id="nama_trayek_update" name="nama_trayek_update">
+                                                                                @foreach ($trayeks as $trayek)
+                                                                                    <option value="{{ $trayek->id_trayek }}">{{ $trayek->nama_trayek }}</option>
+                                                                                @endforeach
+                                                                            </select>
+                                                                        </div>
+                                                                </div>
+                                                            </div>
+                                                            <div class="col-md-6">
+                                                                <div class="form-group">
+                                                                    <label class="form-label" for="nama_pemilik_update">Nama Pemilik</label>
+                                                                    <div class="form-control-wrap">
+                                                                        <select class="form-select" id="nama_pemilik_update" name="nama_pemilik_update">
+                                                                            @foreach ($sopirs as $sopir)
+                                                                                <option value="{{ $sopir->id_sopir }}">{{ $sopir->nama }}</option>
+                                                                            @endforeach
+                                                                        </select>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                            <div class="col-md-6">
+                                                                <div class="form-group">
+                                                                    <label class="form-label"
+                                                                        for="merk_update">Merk</label>
+                                                                    <div class="form-control-wrap">
+                                                                        <input type="text" class="form-control"
+                                                                            id="merk_update"
+                                                                            value="{{ $angkot->merk }}"
+                                                                            name="merk_update" placeholder="merk"
+                                                                            required>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                            <div class="col-md-12">
+                                                                <div class="form-group">
+                                                                    <label class="form-label" for="update_stnk">Pilih Foto STNK</label>
+                                                                    <div class="form-control-wrap">
+                                                                        <div class="custom-file">
+                                                                            <input type="file" class="custom-file-input" id="update_stnk" name="update_stnk"
+                                                                                required>
+                                                                            <label class="custom-file-label" for="update_stnk">Pilih</label>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                            <div class="col-md-12">
+                                                                <div class="form-group">
+                                                                    <label class="form-label" for="update_bpkb">Pilih Foto BPKB</label>
+                                                                    <div class="form-control-wrap">
+                                                                        <div class="custom-file">
+                                                                            <input type="file" class="custom-file-input" id="update_bpkb" name="update_bpkb"
+                                                                                required>
+                                                                            <label class="custom-file-label" for="update_bpkb">Pilih</label>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+
+                                                    {{-- </div> --}}
+                                                </div>
+
+                                            </div>
+                                            <div class="modal-footer bg-light">
+                                                <div class="form-group">
+                                                    <button type="submit" class="btn btn-primary">Save</button>
+                                                </div>
+                                            </div>
+                                        </form>
+                                    </div>
+                                </div>
+                            </div>
                             <div class="nk-tb-item">
                                 <div class="nk-tb-col nk-tb-col-check">
                                     <div class="custom-control custom-control-sm custom-checkbox notext">
@@ -359,18 +510,19 @@
                                         <a href="#" class="btn btn-sm btn-icon btn-trigger dropdown-toggle"
                                             data-toggle="dropdown"><em class="icon ni ni-more-h"></em></a>
                                         <div class="dropdown-menu dropdown-menu-right">
-                                            <ul class="link-list-opt no-bdr">
-                                                <li><a href="#"><em class="icon ni ni-eye"></em><span>View
-                                                            Details</span></a></li>
-                                                <li><a href="#"><em
-                                                            class="icon ni ni-repeat"></em><span>Orders</span></a></li>
+                                             <ul class="link-list-opt no-bdr">
+                                                <li><a href="{{ route('angkot.show', $angkot->id_angkot) }}"><em
+                                                        class="icon ni ni-eye"></em><span>View
+                                                        Details</span></a></li>
+                                                <li><a href="#" data-toggle="modal"
+                                                        data-target="#updateAngkotModal{{ $angkot->id_angkot }}"><em
+                                                        class="icon ni ni-repeat"></em><span>Update</span></a>
+                                                </li>
                                                 <li class="divider"></li>
-                                                <li><a href="#"><em class="icon ni ni-shield-star"></em><span>Reset
-                                                            Pass</span></a></li>
-                                                <li><a href="#"><em class="icon ni ni-shield-off"></em><span>Reset
-                                                            2FA</span></a></li>
-                                                <li><a href="#"><em class="icon ni ni-na"></em><span>Suspend
-                                                            Angkot</span></a></li>
+                                                <li><a href="#" data-toggle="modal"
+                                                        data-target="#deleteAngkotModal{{ $angkot->id_angkot }}"><em
+                                                        class="icon ni ni-na"></em><span>Delete
+                                                        Sopir</span></a></li>
                                             </ul>
                                         </div>
                                     </div>
