@@ -294,8 +294,8 @@
                             </div>
                             <div class="nk-tb-col"><span class="sub-text">No Angkot</span></div>
                             <div class="nk-tb-col tb-col-md"><span class="sub-text">Merk</span></div>
-                            <div class="nk-tb-col tb-col-sm"><span class="sub-text">Plat Nomor</span></div>
-                            <div class="nk-tb-col"><span class="sub-text">Nama Trayek</span></div>
+                            <div class="nk-tb-col tb-col-md"><span class="sub-text">Plat Nomor</span></div>
+                            <div class="nk-tb-col tb-col-md"><span class="sub-text">Nama Trayek</span></div>
                             <div class="nk-tb-col nk-tb-col-tools text-right">
                                 <div class="dropdown">
                                     <a href="#" class="btn btn-xs btn-outline-light btn-icon dropdown-toggle"
@@ -327,7 +327,7 @@
                             </div>
                         </div><!-- .nk-tb-item -->
                         @foreach ($angkots as $angkot)
-                        {{-- DELETE MODAL --}}
+                            {{-- DELETE MODAL --}}
                             <div class="modal fade" id="deleteAngkotModal{{ $angkot->id_angkot }}">
                                 <div class="modal-dialog" role="document">
                                     <div class="modal-content">
@@ -375,8 +375,7 @@
                                             <h5 class="modal-title">Update Angkot</h5>
                                         </div>
                                         <form method="post" action="{{ route('angkot.update', $angkot) }}"
-                                            enctype="multipart/form-data" class="mt-2"
-                                            id="form_update_for{{ $angkot->angkot }}">
+                                            enctype="multipart/form-data" class="mt-2">
                                             @method('PUT')
                                             @csrf
                                             <div class="modal-body">
@@ -386,7 +385,7 @@
                                                         <div class="user-avatar xl bg-primary">
                                                             <span>{{ $angkot->no_angkot }}</span>
                                                         </div>
-                                                    </div>    
+                                                    </div>
                                                     <div class="card-inner">
                                                         <div class="row g-gs">
                                                             <div class="col-md-6">
@@ -395,7 +394,8 @@
                                                                         Polisi</label>
                                                                     <div class="form-control-wrap">
                                                                         <input type="text" class="form-control"
-                                                                            id="no_pol_update" value="{{ $angkot->no_pol }}"
+                                                                            id="no_pol_update"
+                                                                            value="{{ $angkot->no_pol }}"
                                                                             name="no_pol_update" placeholder="No Polisi"
                                                                             required>
                                                                     </div>
@@ -403,23 +403,35 @@
                                                             </div>
                                                             <div class="col-md-6">
                                                                 <div class="form-group">
-                                                                        <label class="form-label" for="nama_trayek_update">Nama Trayek</label>
-                                                                        <div class="form-control-wrap">
-                                                                            <select class="form-select" id="nama_trayek_update" name="nama_trayek_update">
-                                                                                @foreach ($trayeks as $trayek)
-                                                                                    <option value="{{ $trayek->id_trayek }}">{{ $trayek->nama_trayek }}</option>
-                                                                                @endforeach
-                                                                            </select>
-                                                                        </div>
+                                                                    <label class="form-label"
+                                                                        for="nama_trayek_update{{ $angkot->id_angkot }}">Nama
+                                                                        Trayek</label>
+                                                                    <div class="form-control-wrap">
+                                                                        <select class="form-select"
+                                                                            id="nama_trayek_update{{ $angkot->id_angkot }}"
+                                                                            name="nama_trayek_update{{ $angkot->id_angkot }}">
+                                                                            @foreach ($trayeks as $trayek)
+                                                                                <option value="{{ $trayek->id_trayek }}"
+                                                                                    {{ $trayek->id_trayek == $angkot->id_trayek ? 'selected' : '' }}>
+                                                                                    {{ $trayek->nama_trayek }}</option>
+                                                                            @endforeach
+                                                                        </select>
+                                                                    </div>
                                                                 </div>
                                                             </div>
                                                             <div class="col-md-6">
                                                                 <div class="form-group">
-                                                                    <label class="form-label" for="nama_pemilik_update">Nama Pemilik</label>
+                                                                    <label class="form-label"
+                                                                        for="nama_pemilik_update{{ $angkot->id_angkot }}">Nama
+                                                                        Pemilik</label>
                                                                     <div class="form-control-wrap">
-                                                                        <select class="form-select" id="nama_pemilik_update" name="nama_pemilik_update">
-                                                                            @foreach ($sopirs as $sopir)
-                                                                                <option value="{{ $sopir->id_sopir }}">{{ $sopir->nama }}</option>
+                                                                        <select class="form-select"
+                                                                            id="nama_pemilik_update{{ $angkot->id_angkot }}"
+                                                                            name="nama_pemilik_update{{ $angkot->id_angkot }}">
+                                                                            @foreach ($sopirAll as $sopir)
+                                                                                <option value="{{ $sopir->id_sopir }}"
+                                                                                    {{ $sopir->id_sopir == $angkot->id_sopir ? 'selected' : '' }}>
+                                                                                    {{ $sopir->nama }}</option>
                                                                             @endforeach
                                                                         </select>
                                                                     </div>
@@ -440,24 +452,30 @@
                                                             </div>
                                                             <div class="col-md-12">
                                                                 <div class="form-group">
-                                                                    <label class="form-label" for="update_stnk">Pilih Foto STNK</label>
+                                                                    <label class="form-label" for="foto_stnk">Pilih Foto
+                                                                        STNK</label>
                                                                     <div class="form-control-wrap">
                                                                         <div class="custom-file">
-                                                                            <input type="file" class="custom-file-input" id="update_stnk" name="update_stnk"
-                                                                                required>
-                                                                            <label class="custom-file-label" for="update_stnk">Pilih</label>
+                                                                            <input type="file"
+                                                                                class="custom-file-input" id="foto_stnk"
+                                                                                name="foto_stnk">
+                                                                            <label class="custom-file-label"
+                                                                                for="foto_stnk">Pilih</label>
                                                                         </div>
                                                                     </div>
                                                                 </div>
                                                             </div>
                                                             <div class="col-md-12">
                                                                 <div class="form-group">
-                                                                    <label class="form-label" for="update_bpkb">Pilih Foto BPKB</label>
+                                                                    <label class="form-label" for="foto_bpkb">Pilih Foto
+                                                                        BPKB</label>
                                                                     <div class="form-control-wrap">
                                                                         <div class="custom-file">
-                                                                            <input type="file" class="custom-file-input" id="update_bpkb" name="update_bpkb"
-                                                                                required>
-                                                                            <label class="custom-file-label" for="update_bpkb">Pilih</label>
+                                                                            <input type="file"
+                                                                                class="custom-file-input" id="foto_bpkb"
+                                                                                name="foto_bpkb">
+                                                                            <label class="custom-file-label"
+                                                                                for="foto_bpkb">Pilih</label>
                                                                         </div>
                                                                     </div>
                                                                 </div>
@@ -491,8 +509,8 @@
                                             <span>{{ $angkot->no_angkot }}</span>
                                         </div>
                                         <!---<div class="user-name">
-                                                <span class="tb-lead">Abu Bin Ishtiyak</span>
-                                            </div>--->
+                                                            <span class="tb-lead">Abu Bin Ishtiyak</span>
+                                                        </div>--->
                                     </div>
                                 </div>
                                 <div class="nk-tb-col tb-col-md">
@@ -504,30 +522,33 @@
                                 <div class="nk-tb-col tb-col-md">
                                     <span>{{ $angkot->trayek->nama_trayek }}</span>
                                 </div>
-                                
-                                <li>
-                                    <div class="drodown">
-                                        <a href="#" class="btn btn-sm btn-icon btn-trigger dropdown-toggle"
-                                            data-toggle="dropdown"><em class="icon ni ni-more-h"></em></a>
-                                        <div class="dropdown-menu dropdown-menu-right">
-                                             <ul class="link-list-opt no-bdr">
-                                                <li><a href="{{ route('angkot.show', $angkot->id_angkot) }}"><em
-                                                        class="icon ni ni-eye"></em><span>View
-                                                        Details</span></a></li>
-                                                <li><a href="#" data-toggle="modal"
-                                                        data-target="#updateAngkotModal{{ $angkot->id_angkot }}"><em
-                                                        class="icon ni ni-repeat"></em><span>Update</span></a>
-                                                </li>
-                                                <li class="divider"></li>
-                                                <li><a href="#" data-toggle="modal"
-                                                        data-target="#deleteAngkotModal{{ $angkot->id_angkot }}"><em
-                                                        class="icon ni ni-na"></em><span>Delete
-                                                        Sopir</span></a></li>
-                                            </ul>
-                                        </div>
-                                    </div>
-                                </li>
-                                </ul>
+
+                                <div class="nk-tb-col nk-tb-col-tools">
+                                    <ul class="nk-tb-actions gx-2">
+                                        <li>
+                                            <div class="drodown">
+                                                <a href="#" class="btn btn-sm btn-icon btn-trigger dropdown-toggle"
+                                                    data-toggle="dropdown"><em class="icon ni ni-more-h"></em></a>
+                                                <div class="dropdown-menu dropdown-menu-right">
+                                                    <ul class="link-list-opt no-bdr">
+                                                        <li><a href="{{ route('angkot.show', $angkot->id_angkot) }}"><em
+                                                                    class="icon ni ni-eye"></em><span>View
+                                                                    Details</span></a></li>
+                                                        <li><a href="#" data-toggle="modal"
+                                                                data-target="#updateAngkotModal{{ $angkot->id_angkot }}"><em
+                                                                    class="icon ni ni-repeat"></em><span>Update</span></a>
+                                                        </li>
+                                                        <li class="divider"></li>
+                                                        <li><a href="#" data-toggle="modal"
+                                                                data-target="#deleteAngkotModal{{ $angkot->id_angkot }}"><em
+                                                                    class="icon ni ni-na"></em><span>Delete
+                                                                    Sopir</span></a></li>
+                                                    </ul>
+                                                </div>
+                                            </div>
+                                        </li>
+                                    </ul>
+                                </div>
                             </div>
                         @endforeach
                     </div><!-- .nk-tb-item -->

@@ -23,7 +23,8 @@ class AngkotController extends Controller
             $join->on('sopirs.id_sopir' , '=', 'angkots.id_sopir');
         })->whereNull('angkots.id_sopir')->get(['sopirs.id_sopir',
         'sopirs.nama',]);
-        return view('pages.angkot', ['angkots' => $angkots, 'trayeks' => $trayeks, 'sopirs' => $sopirs]); 
+        $sopirAll = Sopir::all();
+        return view('pages.angkot', ['angkots' => $angkots, 'trayeks' => $trayeks, 'sopirs' => $sopirs, 'sopirAll' => $sopirAll]); 
     }
 
     /**
@@ -112,16 +113,16 @@ class AngkotController extends Controller
         //$angkot->no_angkot = $request->no_angkot_update;
         $angkot->no_pol = $request->no_pol_update;
         $angkot->merk = $request->merk_update;
-        $angkot->id_trayek = $request->nama_trayek_update;
-        $angkot->id_sopir = $request->nama_pemilik_update;
+        $angkot->id_trayek = $request->get('nama_trayek_update'.$angkot->id_angkot);
+        $angkot->id_sopir = $request->get('nama_pemilik_update'.$angkot->id_angkot);
         
         $image_name_stnk = $angkot->foto_stnk;
-        if ($request->has('update_stnk')) {
+        if ($request->has('foto_stnk')) {
             $image_name_stnk = $request->foto_stnk->store('foto_stnk', 'public');
         }
 
         $image_name_bpkb = $angkot->foto_bpkb;
-        if ($request->has('update_bpkb')) {
+        if ($request->has('foto_bpkb')) {
             $image_name_bpkb = $request->foto_bpkb->store('foto_bpkb', 'public');
         }
 
