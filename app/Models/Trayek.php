@@ -12,6 +12,6 @@ class Trayek extends Model
 
     public function angkot()
     {
-        return $this->hasMany(Angkot::class);
+        return $this->hasMany(Angkot::class, 'id_trayek');
     }
 }

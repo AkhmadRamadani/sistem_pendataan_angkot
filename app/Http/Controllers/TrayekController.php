@@ -16,7 +16,6 @@ class TrayekController extends Controller
     {
         $trayeks = Trayek::all();
         return view('pages.trayek', ['trayeks' => $trayeks]);
- 
     }
 
     /**
@@ -37,7 +36,21 @@ class TrayekController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $request->validate([
+            'nama_trayek' => 'required',
+            'warna_angkot' => 'required',
+            'jalur_trayek' => 'required',
+        ]);
+        
+        $trayek = new Trayek;
+        $trayek->nama_trayek = $request->nama_trayek;
+        $trayek->jalur_trayek = $request->jalur_trayek;
+        $trayek->warna_angkot = $request->warna_angkot;
+
+
+        $trayek->save();
+
+        return redirect()->route('trayek.index');
     }
 
     /**
@@ -48,7 +61,8 @@ class TrayekController extends Controller
      */
     public function show($id)
     {
-        //
+        $trayek = Trayek::where('id_trayek', $id)->first();
+        return view('pages.trayek_detail', ['trayek' => $trayek]);
     }
 
     /**
@@ -66,22 +80,32 @@ class TrayekController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
+     * @param  \App\Models\Trayek  $trayek
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, Trayek $trayek)
     {
-        //
+        $trayek->nama_trayek = $request->nama_trayek_update;
+        $trayek->jalur_trayek = $request->jalur_trayek_update;
+        $trayek->warna_angkot = $request->warna_angkot_update;
+
+
+        $trayek->save();
+
+        return redirect()->route('trayek.index');
     }
 
     /**
      * Remove the specified resource from storage.
      *
-     * @param  int  $id
+     * @param \App\Models\Trayek  $trayek
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(Trayek $trayek)
     {
-        //
+
+        $trayek->delete();
+
+        return redirect()->route('trayek.index');
     }
 }
