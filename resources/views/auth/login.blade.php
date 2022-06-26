@@ -130,8 +130,7 @@
                                     <div class="form-group">
                                         <div class="form-label-group">
                                             <label class="form-label" for="email">Email</label>
-                                            <a class="link link-primary link-sm" tabindex="-1" href="#">Need
-                                                Help?</a>
+                                            
                                         </div>
                                         <div class="form-control-wrap">
                                             <input id="email" type="email"
@@ -150,8 +149,7 @@
                                     <div class="form-group">
                                         <div class="form-label-group">
                                             <label class="form-label" for="password">Passcode</label>
-                                            <a class="link link-primary link-sm" tabindex="-1" href="#">Forgot
-                                                Code?</a>
+                                        
                                         </div>
                                         <div class="form-control-wrap">
                                             <a tabindex="-1" href="#"

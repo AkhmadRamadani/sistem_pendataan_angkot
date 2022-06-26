@@ -76,12 +76,6 @@
                             <div class="card-inner p-0">
                                 <div class="nk-tb-list nk-tb-ulist is-compact">
                                     <div class="nk-tb-item nk-tb-head">
-                                        <div class="nk-tb-col nk-tb-col-check">
-                                            <div class="custom-control custom-control-sm custom-checkbox notext">
-                                                <input type="checkbox" class="custom-control-input" id="uid">
-                                                <label class="custom-control-label" for="uid"></label>
-                                            </div>
-                                        </div>
                                         <div class="nk-tb-col"><span class="sub-text">No Angkot</span></div>
                                         <div class="nk-tb-col tb-col-md"><span class="sub-text">Merk</span></div>
                                         <div class="nk-tb-col tb-col-md"><span class="sub-text">Plat Nomor</span></div>
@@ -267,12 +261,6 @@
                                             </div>
                                         </div>
                                         <div class="nk-tb-item">
-                                            <div class="nk-tb-col nk-tb-col-check">
-                                                <div class="custom-control custom-control-sm custom-checkbox notext">
-                                                    <input type="checkbox" class="custom-control-input" id="uid1">
-                                                    <label class="custom-control-label" for="uid1"></label>
-                                                </div>
-                                            </div>
                                             <div class="nk-tb-col">
                                                 <div class="user-card">
                                                     <div class="user-avatar xs bg-primary">
