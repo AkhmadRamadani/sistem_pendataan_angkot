@@ -16,7 +16,7 @@ class AngkotController extends Controller
      */
     public function index()
     {
-        $angkots = Angkot::with('trayek')->get();
+        $angkots = Angkot::with('trayek')->paginate(10);
         $trayeks = Trayek::all();
         $sopirs = Sopir::leftJoin('angkots', function ($join)
         {

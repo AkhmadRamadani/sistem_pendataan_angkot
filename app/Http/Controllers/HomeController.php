@@ -2,6 +2,10 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Angkot;
+use App\Models\Perjalanan;
+use App\Models\Sopir;
+use App\Models\Trayek;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
@@ -21,17 +25,17 @@ class HomeController extends Controller
         $this->middleware(function ($request, $next) {
             $this->user = Auth::user();
             View::share('user', $this->user);
- 
+
             return $next($request);
-         });
-        
+        });
+
         // if (Auth::check()) {
         //   $user = Auth::user();
-      
+
         // }
     }
 
-    
+
     public function loggingOut()
     {
         Auth::logout();
@@ -45,7 +49,10 @@ class HomeController extends Controller
      */
     public function index()
     {
-     
-        return view('main');
+        $sopir = Sopir::all();
+        $trayek = Trayek::all();
+        $angkot = Angkot::all();
+        $perjalanan = Perjalanan::all();
+        return view('pages.default_dashboard', ["sopirs" => $sopir, "trayeks" => $trayek, "angkots" => $angkot, "perjalanans" => $perjalanan]);
     }
 }

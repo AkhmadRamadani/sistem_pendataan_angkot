@@ -15,7 +15,7 @@ class SopirController extends HomeController
      */
     public function index()
     {
-        $sopirs  = Sopir::with('angkot.trayek')->get();
+        $sopirs  = Sopir::with('angkot.trayek')->paginate(10);
         return view('pages.sopir', ['sopirs' => $sopirs]);
     }
 

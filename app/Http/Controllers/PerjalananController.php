@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Perjalanan;
 use App\Models\Sopir;
 use Illuminate\Http\Request;
+use Barryvdh\DomPDF\Facade\Pdf;
 
 class PerjalananController extends Controller
 {
@@ -15,7 +16,7 @@ class PerjalananController extends Controller
      */
     public function index()
     {
-        $perjalanans = Perjalanan::all();
+        $perjalanans = Perjalanan::paginate(10);
         $sopirs = Sopir::join('angkots', function ($join) {
             $join->on('sopirs.id_sopir', '=', 'angkots.id_sopir');
         })->whereNotNull('angkots.id_sopir')->where('sopirs.status', 'active')->get([
@@ -108,5 +109,12 @@ class PerjalananController extends Controller
         $perjalanan->delete();
 
         return redirect()->route('perjalanan.index');
+    }
+
+    public function print_surat_jalan($id_perjalanan)
+    {
+        $perjalanan = Perjalanan::where('id_perjalanan', $id_perjalanan)->first();
+        $pdf = PDF::loadView('pages.print_layout.surat_jalan',['perjalanan' => $perjalanan])->setOptions(['defaultFont' => 'sans-serif']);
+        return $pdf->stream();
     }
 }

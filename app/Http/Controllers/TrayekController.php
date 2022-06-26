@@ -15,7 +15,7 @@ class TrayekController extends Controller
      */
     public function index()
     {
-        $trayeks = Trayek::all();
+        $trayeks = Trayek::paginate(10);
         return view('pages.trayek', ['trayeks' => $trayeks]);
     }
 
