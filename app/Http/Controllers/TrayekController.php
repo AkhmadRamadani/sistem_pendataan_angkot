@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Sopir;
 use Illuminate\Http\Request;
 use App\Models\Trayek;
 
@@ -61,8 +62,10 @@ class TrayekController extends Controller
      */
     public function show($id)
     {
+        
+        $sopirAll = Sopir::all();
         $trayek = Trayek::where('id_trayek', $id)->first();
-        return view('pages.trayek_detail', ['trayek' => $trayek]);
+        return view('pages.trayek_detail', ['trayek' => $trayek, 'sopirAll' => $sopirAll]);
     }
 
     /**

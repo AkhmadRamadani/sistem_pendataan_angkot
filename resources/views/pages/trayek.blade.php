@@ -448,7 +448,7 @@
                                                     data-toggle="dropdown"><em class="icon ni ni-more-h"></em></a>
                                                 <div class="dropdown-menu dropdown-menu-right">
                                                     <ul class="link-list-opt no-bdr">
-                                                        <li><a href="{{ route('angkot.show', $sopir->id_trayek) }}"><em
+                                                        <li><a href="{{ route('trayek.show', $sopir->id_trayek) }}"><em
                                                                     class="icon ni ni-eye"></em><span>View
                                                                     Details</span></a></li>
                                                         <li><a href="#" data-toggle="modal"

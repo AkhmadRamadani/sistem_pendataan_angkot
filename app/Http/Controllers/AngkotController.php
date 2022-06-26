@@ -85,9 +85,10 @@ class AngkotController extends Controller
      * @param  \App\Models\Angkot  $angkot
      * @return \Illuminate\Http\Response
      */
-    public function show($angkot)
+    public function show(Angkot $angkot)
     {
-        //
+        $angkot = Angkot::where('id_angkot', $angkot->id_angkot)->first();
+        return view('pages.angkot_detail', ['angkot' => $angkot]);
     }
 
     /**
