@@ -12,6 +12,6 @@ class Perjalanan extends Model
     protected $primaryKey = 'id_perjalanan';
     public function sopir()
     {
-        return $this->belongsTo(Sopir::class);
+        return $this->belongsTo(Sopir::class, 'id_sopir', 'id_sopir')->withDefault();
     }
 }

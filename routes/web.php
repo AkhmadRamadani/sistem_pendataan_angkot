@@ -4,6 +4,7 @@ use Illuminate\Support\Facades\Route;
 
 use App\Http\Controllers\SopirController;
 use App\Http\Controllers\AngkotController;
+use App\Http\Controllers\PerjalananController;
 use App\Http\Controllers\TrayekController;
 
 /*
@@ -27,9 +28,6 @@ Route::get('/logout', [App\Http\Controllers\HomeController::class, 'loggingOut']
 Route::resource('sopir',  SopirController::class)->middleware('auth');
 Route::resource('angkot',  AngkotController::class)->middleware('auth');
 
-Route::get('/perjalanan', function () {
-    return view('pages.perjalanan');
-});
 
 // Route::resource('angkot', AngkotController::class);
 //Route::get('/angkot', function () {
@@ -37,6 +35,7 @@ Route::get('/perjalanan', function () {
 //});
 
 Route::resource('trayek', TrayekController::class)->middleware('auth');
+Route::resource('perjalanan', PerjalananController::class)->middleware('auth');
 
 // Route::get('/trayek', function () {
 //     return view('pages.trayek');
