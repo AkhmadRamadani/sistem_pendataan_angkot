@@ -14,7 +14,7 @@ class AddColumnsFotoTbSopir extends Migration
     public function up()
     {
         Schema::table('sopirs', function (Blueprint $table) {
-            $table->string('foto');
+            $table->string('foto')->nullable();
         });
     }
 

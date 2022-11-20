@@ -14,8 +14,8 @@ class AddColumnsStnkBpkbTbAngkot extends Migration
     public function up()
     {
         Schema::table('angkots', function (Blueprint $table) {
-            $table->string('foto_stnk');
-            $table->string('foto_bpkb');
+            $table->string('foto_stnk')->nullable();
+            $table->string('foto_bpkb')->nullable();
         });
     }
 
